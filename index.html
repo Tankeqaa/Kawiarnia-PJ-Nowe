@@ -42,38 +42,38 @@
         }
     </style>
 </head>
-<body class="h-screen w-screen overflow-hidden flex flex-col">
+<body class="h-screen w-screen overflow-hidden flex flex-col text-xs">
 
-    <header class="bg-coffee-900 text-white h-16 flex items-center justify-between px-6 shadow-md z-10 shrink-0">
-        <div class="flex items-center space-x-4">
-            <div class="bg-coffee-700 p-2 rounded-lg text-amber-200">
-                <i class="fa-solid fa-mug-hot text-2xl"></i>
+    <header class="bg-coffee-900 text-white h-11 flex items-center justify-between px-3 shadow-md z-10 shrink-0">
+        <div class="flex items-center space-x-2">
+            <div class="bg-coffee-700 p-1 rounded text-amber-200">
+                <i class="fa-solid fa-mug-hot text-xs"></i>
             </div>
             <div>
-                <h1 class="text-lg font-bold tracking-wide">Kawiarnia "Aroma POS"</h1>
-                <p class="text-xs text-amber-200/80 flex items-center gap-2">
+                <h1 class="text-[11px] font-bold tracking-wide">Aroma POS</h1>
+                <p class="text-[8px] text-amber-200/80 flex items-center gap-1">
                     <span id="current-time"></span> | 
-                    <span class="bg-emerald-600 text-white px-1.5 py-0.5 rounded text-[10px] font-semibold">Stan: Online</span>
+                    <span class="bg-emerald-600 text-white px-1 rounded text-[7px] font-semibold">Online</span>
                 </p>
             </div>
         </div>
 
-        <div class="flex bg-coffee-800 p-1 rounded-xl space-x-1">
-            <button onclick="switchTab('pos')" id="tab-btn-pos" class="px-5 py-2 rounded-lg text-sm font-medium transition-all bg-coffee-600 text-white shadow">
-                <i class="fa-solid fa-cash-register mr-2"></i> Kasa / Menu
+        <div class="flex bg-coffee-800 p-0.5 rounded-lg space-x-1">
+            <button onclick="switchTab('pos')" id="tab-btn-pos" class="px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]">
+                <i class="fa-solid fa-cash-register mr-1"></i> Kasa
             </button>
-            <button onclick="switchTab('history')" id="tab-btn-history" class="px-5 py-2 rounded-lg text-sm font-medium transition-all text-coffee-200 hover:text-white">
-                <i class="fa-solid fa-clock-rotate-left mr-2"></i> Historia Zamówień
+            <button onclick="switchTab('history')" id="tab-btn-history" class="px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]">
+                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Historia
             </button>
         </div>
 
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2">
             <div class="text-right">
-                <p class="text-sm font-medium">Barista: Jan</p>
-                <p class="text-[11px] text-amber-200/70">Terminal #1 (iPad)</p>
+                <p class="font-medium text-[10px]">Barista: Jan</p>
+                <p class="text-[8px] text-amber-200/70">Terminal #1</p>
             </div>
-            <button onclick="openDaySummaryModal()" class="bg-coffee-700 hover:bg-coffee-600 text-amber-100 p-2.5 rounded-xl transition" title="Podsumowanie dnia">
-                <i class="fa-solid fa-chart-line text-lg"></i>
+            <button onclick="openDaySummaryModal()" class="bg-coffee-700 hover:bg-coffee-600 text-amber-100 p-1.5 rounded transition" title="Podsumowanie dnia">
+                <i class="fa-solid fa-chart-line text-[11px]"></i>
             </button>
         </div>
     </header>
@@ -82,103 +82,91 @@
 
         <div id="view-pos" class="flex-1 flex overflow-hidden">
             
-            <div class="flex-1 flex flex-col p-4 overflow-hidden border-r border-coffee-200">
-                <div class="mb-4 space-y-3 shrink-0">
+            <div class="flex-1 flex flex-col p-2 overflow-hidden border-r border-coffee-200">
+                <div class="mb-1.5 space-y-1 shrink-0">
                     <div class="relative">
-                        <i class="fa-solid fa-search absolute left-4 top-3.5 text-coffee-600"></i>
-                        <input type="text" id="search-input" oninput="filterMenu()" placeholder="Szukaj produktu (np. cappuccino, naleśnik, gofr, posypka)..." 
-                            class="w-full pl-11 pr-4 py-3 bg-white border border-coffee-200 rounded-xl text-sm focus:outline-none focus:border-coffee-600 shadow-sm">
+                        <i class="fa-solid fa-search absolute left-3 top-2 text-coffee-600 text-[10px]"></i>
+                        <input type="text" id="search-input" oninput="filterMenu()" placeholder="Szukaj produktu..." 
+                            class="w-full pl-8 pr-3 py-1 bg-white border border-coffee-200 rounded-lg focus:outline-none focus:border-coffee-600 shadow-sm text-[11px]">
                     </div>
 
-                    <div id="category-container" class="flex space-x-2 overflow-x-auto no-scrollbar pb-1"></div>
+                    <div id="category-container" class="flex space-x-1 overflow-x-auto no-scrollbar pb-0.5"></div>
                 </div>
 
-                <div class="flex-1 overflow-y-auto pr-1">
-                    <div id="product-grid" class="grid grid-cols-3 gap-3.5 pb-4"></div>
+                <div class="flex-1 overflow-y-auto pr-0.5">
+                    <div id="product-grid" class="grid grid-cols-5 gap-1.5 pb-1"></div>
                 </div>
             </div>
 
-            <div class="w-[380px] bg-white flex flex-col h-full shadow-lg shrink-0">
-                <div class="p-4 border-b border-coffee-100 flex justify-between items-center bg-coffee-50">
-                    <h2 class="font-bold text-coffee-900 flex items-center">
-                        <i class="fa-solid fa-receipt mr-2 text-coffee-600"></i> Bieżące Zamówienie
+            <div class="w-[300px] bg-white flex flex-col h-full shadow-lg shrink-0">
+                <div class="p-2 border-b border-coffee-100 flex justify-between items-center bg-coffee-50 shrink-0">
+                    <h2 class="font-bold text-coffee-900 flex items-center text-[10px]">
+                        <i class="fa-solid fa-receipt mr-1 text-coffee-600"></i> Bieżące Zamówienie
                     </h2>
-                    <button onclick="clearCart()" class="text-xs text-red-600 hover:text-red-800 font-medium px-2 py-1 bg-red-50 rounded-lg transition">
-                        <i class="fa-solid fa-trash-can mr-1"></i> Wyczyść
+                    <button onclick="clearCart()" class="text-[9px] text-red-600 hover:text-red-800 font-medium px-1.5 py-0.5 bg-red-50 rounded transition">
+                        <i class="fa-solid fa-trash-can mr-0.5"></i> Wyczyść
                     </button>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 p-3 bg-coffee-50 border-b border-coffee-100">
-                    <button onclick="setOrderType('lokal')" id="type-lokal" class="py-2 px-3 text-xs font-semibold rounded-xl border transition bg-coffee-700 text-white border-coffee-700 shadow-sm">
-                        <i class="fa-solid fa-utensils mr-1"></i> Na miejscu
-                    </button>
-                    <button onclick="setOrderType('wynos')" id="type-wynos" class="py-2 px-3 text-xs font-semibold rounded-xl border transition bg-white text-coffee-800 border-coffee-200 hover:bg-coffee-100">
-                        <i class="fa-solid fa-bag-shopping mr-1"></i> Na wynos
-                    </button>
-                </div>
-
-                <div id="cart-items" class="flex-1 overflow-y-auto p-3 space-y-2.5">
-                    <div class="text-center text-coffee-600/60 py-12 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-mug-saucer text-4xl mb-3 text-coffee-200"></i>
-                        <p class="text-sm font-medium">Koszyk jest pusty</p>
-                        <p class="text-xs mt-1">Wybierz produkty z menu po lewej stronie</p>
+                <div id="cart-items" class="flex-1 overflow-y-auto p-1.5 space-y-1">
+                    <div class="text-center text-coffee-600/60 py-6 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-mug-saucer text-xl mb-1 text-coffee-200"></i>
+                        <p class="font-medium text-[10px]">Koszyk jest pusty</p>
                     </div>
                 </div>
 
-                <div class="p-4 border-t border-coffee-100 bg-coffee-50 space-y-3 shrink-0">
-                    <div class="space-y-1.5 text-sm">
-                        <div class="flex justify-between text-lg font-bold text-coffee-900 pt-1">
-                            <span>Do zapłaty:</span>
-                            <span id="cart-total" class="text-coffee-700">0.00 zł</span>
-                        </div>
+                <div class="p-2 border-t border-coffee-100 bg-coffee-50 space-y-1.5 shrink-0">
+                    <div class="flex justify-between font-bold text-xs text-coffee-900 pt-0.5">
+                        <span>Do zapłaty:</span>
+                        <span id="cart-total" class="text-coffee-700 text-sm">0.00 zł</span>
                     </div>
 
                     <div>
-                        <button onclick="checkout('Gotówka')" class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-sm transition shadow flex items-center justify-center">
-                            <i class="fa-solid fa-money-bill-wave mr-2 text-lg"></i> Zamów i Opłać (Gotówka)
+                        <button onclick="checkout('Gotówka')" class="w-full py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition shadow flex items-center justify-center text-[10px]">
+                            <i class="fa-solid fa-money-bill-wave mr-1 text-xs"></i> Zamów i Opłać (Gotówka)
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="view-history" class="flex-1 flex flex-col p-6 overflow-hidden hidden bg-[#f5efe6]">
-            <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-2xl shadow-sm border border-coffee-200 shrink-0">
-                <div class="flex items-center space-x-4">
-                    <h2 class="text-xl font-bold text-coffee-900 flex items-center">
-                        <i class="fa-solid fa-list-check mr-3 text-coffee-600"></i> Historia Zamówień
+        <div id="view-history" class="flex-1 flex flex-col p-2.5 overflow-hidden hidden bg-[#f5efe6]">
+            <div class="flex justify-between items-center mb-2 bg-white p-2 rounded-lg shadow-sm border border-coffee-200 shrink-0">
+                <div class="flex items-center space-x-2">
+                    <h2 class="font-bold text-coffee-900 flex items-center text-xs">
+                        <i class="fa-solid fa-list-check mr-1 text-coffee-600"></i> Historia Zamówień
                     </h2>
                     <div class="relative">
-                        <i class="fa-solid fa-filter absolute left-3 top-3 text-coffee-600 text-xs"></i>
-                        <input type="text" id="history-search" oninput="filterHistory()" placeholder="Szukaj po ID lub pozycji..." 
-                            class="pl-9 pr-4 py-2 bg-coffee-50 border border-coffee-200 rounded-xl text-xs focus:outline-none focus:border-coffee-600 w-64">
+                        <i class="fa-solid fa-filter absolute left-2 top-1.5 text-coffee-600 text-[9px]"></i>
+                        <input type="text" id="history-search" oninput="filterHistory()" placeholder="Szukaj numeru..." 
+                            class="pl-6 pr-2 py-0.5 bg-coffee-50 border border-coffee-200 rounded focus:outline-none focus:border-coffee-600 w-32 text-[10px]">
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-3">
-                    <button onclick="exportToCSV()" class="px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-xl text-xs transition flex items-center shadow-sm">
-                        <i class="fa-solid fa-file-excel mr-2"></i> Eksport CSV
+                <div class="flex items-center space-x-1">
+                    <button onclick="exportToCSV()" class="px-2 py-0.5 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded transition flex items-center text-[10px] shadow-sm">
+                        <i class="fa-solid fa-file-excel mr-1"></i> Excel
                     </button>
-                    <button onclick="clearHistory()" class="px-3 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-medium rounded-xl text-xs transition flex items-center">
-                        <i class="fa-solid fa-trash mr-1"></i> Wyczyść historię
+                    <button onclick="clearHistory()" class="px-2 py-0.5 bg-red-100 hover:bg-red-200 text-red-700 font-medium rounded transition flex items-center text-[10px]">
+                        <i class="fa-solid fa-trash mr-1"></i> Wyczyść
                     </button>
                 </div>
             </div>
 
-            <div class="flex-1 bg-white rounded-2xl shadow-sm border border-coffee-200 overflow-hidden flex flex-col">
+            <div class="flex-1 bg-white rounded-lg shadow-sm border border-coffee-200 overflow-hidden flex flex-col">
                 <div class="overflow-y-auto flex-1">
                     <table class="w-full text-left border-collapse">
-                        <thead class="bg-coffee-50 text-coffee-900 text-xs uppercase font-semibold sticky top-0 border-b border-coffee-200">
+                        <thead class="bg-coffee-50 text-coffee-900 uppercase font-semibold sticky top-0 border-b border-coffee-200 text-[9px]">
                             <tr>
-                                <th class="p-4">ID Zamówienia</th>
-                                <th class="p-4">Godzina</th>
-                                <th class="p-4">Typ</th>
-                                <th class="p-4">Pozycje</th>
-                                <th class="p-4">Płatność</th>
-                                <th class="p-4 text-right">Wartość</th>
+                                <th class="p-1.5">Nr</th>
+                                <th class="p-1.5">Godzina</th>
+                                <th class="p-1.5">Pozycje</th>
+                                <th class="p-1.5">Płatność</th>
+                                <th class="p-1.5 text-right">Wartość</th>
+                                <th class="p-1.5 text-center">Akcja</th>
                             </tr>
                         </thead>
-                        <tbody id="history-table-body" class="divide-y divide-coffee-100 text-sm"></tbody>
+                        <tbody id="history-table-body" class="divide-y divide-coffee-100 text-[10px]"></tbody>
                     </table>
                 </div>
             </div>
@@ -188,7 +176,6 @@
 
     <script>
         const menuProducts = [
-            // Kawy
             { id: 1, name: 'Czarna', price: 6.00, category: 'kawy', image: '☕' },
             { id: 2, name: 'Z mlekiem', price: 10.00, category: 'kawy', image: '🥛' },
             { id: 3, name: 'Mrożona', price: 10.00, category: 'kawy', image: '🧊' },
@@ -196,31 +183,23 @@
             { id: 5, name: 'Espresso', price: 5.00, category: 'kawy', image: '☕' },
             { id: 6, name: 'Tonik Espresso', price: 10.00, category: 'kawy', image: '🍋' },
             { id: 7, name: 'Latte', price: 10.00, category: 'kawy', image: '🧋' },
-            
-            // Napoje
-            { id: 8, name: 'Coca Cola (Zwykła, Zero), SPRITE, FANTA 0,5L', price: 6.00, category: 'napoje', image: '🥤' },
-            { id: 9, name: 'Coca Cola, FANTA 0,85L', price: 8.00, category: 'napoje', image: '🍾' },
+            { id: 8, name: 'Cola/Sprite/Fanta 0,5L', price: 6.00, category: 'napoje', image: '🥤' },
+            { id: 9, name: 'Cola/Fanta 0,85L', price: 8.00, category: 'napoje', image: '🍾' },
             { id: 10, name: 'Oshee', price: 6.00, category: 'napoje', image: '⚡' },
-            
-            // Naleśniki, Gofry i Muffinki
             { id: 11, name: 'Suchy naleśnik', price: 6.00, category: 'dania', image: '🥞' },
             { id: 12, name: 'Suchy gofr', price: 6.00, category: 'dania', image: '🧇' },
             { id: 13, name: 'Muffinki - 2 szt.', price: 5.00, category: 'dania', image: '🧁' },
-            
-            // Dodatki
             { id: 14, name: 'Ser (twaróg)', price: 3.00, category: 'dodatki', image: '🧀' },
             { id: 15, name: 'Czekolada', price: 3.00, category: 'dodatki', image: '🍫' },
-            { id: 16, name: 'Dżem domowej roboty', price: 2.00, category: 'dodatki', image: '🍯' },
+            { id: 16, name: 'Dżem domowy', price: 2.00, category: 'dodatki', image: '🍯' },
             { id: 17, name: 'Banany', price: 4.00, category: 'dodatki', image: '🍌' },
             { id: 18, name: 'Bita śmietana', price: 3.00, category: 'dodatki', image: '🍦' },
             { id: 19, name: 'Syrop klonowy', price: 6.00, category: 'dodatki', image: '🍁' },
             { id: 20, name: 'Cukier puder', price: 1.00, category: 'dodatki', image: '🧂' },
             { id: 21, name: 'Posypka', price: 1.00, category: 'dodatki', image: '✨' },
-            { id: 22, name: 'Sosy (Malinowy, Owoce leśne, Czekoladowy)', price: 2.00, category: 'dodatki', image: '🍓' },
-            
-            // Przekąski
-            { id: 23, name: 'Góralek (Mleczny, Czekoladowy)', price: 3.00, category: 'przekaski', image: '🍫' },
-            { id: 24, name: 'Mars, Snickers, Lion', price: 4.00, category: 'przekaski', image: '🍫' },
+            { id: 22, name: 'Sosy (różne)', price: 2.00, category: 'dodatki', image: '🍓' },
+            { id: 23, name: 'Góralek', price: 3.00, category: 'przekaski', image: '🍫' },
+            { id: 24, name: 'Mars / Snickers', price: 4.00, category: 'przekaski', image: '🍫' },
             { id: 25, name: 'Sezamki', price: 3.00, category: 'przekaski', image: '🌾' },
             { id: 26, name: 'Orzeszki ziemne', price: 8.00, category: 'przekaski', image: '🥜' },
             { id: 27, name: 'Paluszki', price: 3.00, category: 'przekaski', image: '🥨' }
@@ -230,13 +209,12 @@
             { id: 'all', name: 'Wszystkie', icon: 'fa-border-all' },
             { id: 'kawy', name: 'Kawy', icon: 'fa-mug-hot' },
             { id: 'napoje', name: 'Napoje', icon: 'fa-bottle-water' },
-            { id: 'dania', name: 'Dania i Wypieki', icon: 'fa-utensils' },
+            { id: 'dania', name: 'Dania', icon: 'fa-utensils' },
             { id: 'dodatki', name: 'Dodatki', icon: 'fa-plus' },
             { id: 'przekaski', name: 'Przekąski', icon: 'fa-cookie' }
         ];
 
         let cart = [];
-        let orderType = 'lokal';
         let currentCategory = 'all';
         let orderHistory = JSON.parse(localStorage.getItem('aroma_pos_history')) || [];
 
@@ -251,7 +229,7 @@
 
         function updateClock() {
             const now = new Date();
-            document.getElementById('current-time').innerText = now.toLocaleDateString('pl-PL') + ' ' + now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+            document.getElementById('current-time').innerText = now.toLocaleDateString('pl-PL') + ' ' + now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'});
         }
 
         function switchTab(tab) {
@@ -263,13 +241,13 @@
             if (tab === 'pos') {
                 posView.classList.remove('hidden');
                 historyView.classList.add('hidden');
-                posBtn.className = "px-5 py-2 rounded-lg text-sm font-medium transition-all bg-coffee-600 text-white shadow";
-                historyBtn.className = "px-5 py-2 rounded-lg text-sm font-medium transition-all text-coffee-200 hover:text-white";
+                posBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]";
+                historyBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]";
             } else {
                 posView.classList.add('hidden');
                 historyView.classList.remove('hidden');
-                historyBtn.className = "px-5 py-2 rounded-lg text-sm font-medium transition-all bg-coffee-600 text-white shadow";
-                posBtn.className = "px-5 py-2 rounded-lg text-sm font-medium transition-all text-coffee-200 hover:text-white";
+                historyBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]";
+                posBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]";
                 renderHistory();
             }
         }
@@ -278,8 +256,8 @@
             const container = document.getElementById('category-container');
             container.innerHTML = categories.map(cat => `
                 <button onclick="selectCategory('${cat.id}')" 
-                    class="px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition flex items-center space-x-2 shrink-0 ${currentCategory === cat.id ? 'bg-coffee-700 text-white shadow-sm' : 'bg-white text-coffee-800 border border-coffee-200 hover:bg-coffee-100'}">
-                    <i class="fa-solid ${cat.icon}"></i>
+                    class="px-2 py-1 rounded font-semibold whitespace-nowrap transition flex items-center space-x-1 shrink-0 text-[10px] ${currentCategory === cat.id ? 'bg-coffee-700 text-white shadow-sm' : 'bg-white text-coffee-800 border border-coffee-200 hover:bg-coffee-100'}">
+                    <i class="fa-solid ${cat.icon} text-[8px]"></i>
                     <span>${cat.name}</span>
                 </button>
             `).join('');
@@ -295,9 +273,9 @@
             const grid = document.getElementById('product-grid');
             if (products.length === 0) {
                 grid.innerHTML = `
-                    <div class="col-span-3 text-center py-12 text-coffee-600/60">
-                        <i class="fa-solid fa-box-open text-3xl mb-2"></i>
-                        <p class="text-sm">Brak produktów w tej kategorii</p>
+                    <div class="col-span-5 text-center py-6 text-coffee-600/60 text-[10px]">
+                        <i class="fa-solid fa-box-open text-lg mb-1"></i>
+                        <p>Brak produktów</p>
                     </div>
                 `;
                 return;
@@ -305,14 +283,13 @@
 
             grid.innerHTML = products.map(prod => `
                 <button onclick="addToCart(${prod.id})" 
-                    class="bg-white p-3 rounded-2xl border border-coffee-200 shadow-sm hover:shadow-md hover:border-coffee-600 transition flex flex-col justify-between text-left h-32 group">
+                    class="bg-white p-1.5 rounded-lg border border-coffee-200 shadow-sm hover:shadow hover:border-coffee-600 transition flex flex-col justify-between text-left h-16 group">
                     <div class="flex justify-between items-start w-full">
-                        <span class="text-2xl p-2 bg-coffee-50 rounded-xl group-hover:scale-110 transition">${prod.image}</span>
-                        <span class="text-xs font-bold px-2 py-1 bg-coffee-100 text-coffee-900 rounded-lg">${prod.price.toFixed(2)} zł</span>
+                        <span class="text-xs p-0.5 bg-coffee-50 rounded group-hover:scale-105 transition">${prod.image}</span>
+                        <span class="text-[8px] font-bold px-1 bg-coffee-100 text-coffee-900 rounded">${prod.price.toFixed(2)} zł</span>
                     </div>
                     <div>
-                        <h3 class="font-bold text-coffee-900 text-xs leading-tight line-clamp-2">${prod.name}</h3>
-                        <p class="text-[10px] text-coffee-600 capitalize mt-0.5">${prod.category}</p>
+                        <h3 class="font-bold text-coffee-900 text-[9px] leading-tight line-clamp-2">${prod.name}</h3>
                     </div>
                 </button>
             `).join('');
@@ -331,20 +308,6 @@
             }
 
             renderProducts(filtered);
-        }
-
-        function setOrderType(type) {
-            orderType = type;
-            const btnLokal = document.getElementById('type-lokal');
-            const btnWynos = document.getElementById('type-wynos');
-
-            if (type === 'lokal') {
-                btnLokal.className = "py-2 px-3 text-xs font-semibold rounded-xl border transition bg-coffee-700 text-white border-coffee-700 shadow-sm";
-                btnWynos.className = "py-2 px-3 text-xs font-semibold rounded-xl border transition bg-white text-coffee-800 border-coffee-200 hover:bg-coffee-100";
-            } else {
-                btnWynos.className = "py-2 px-3 text-xs font-semibold rounded-xl border transition bg-coffee-700 text-white border-coffee-700 shadow-sm";
-                btnLokal.className = "py-2 px-3 text-xs font-semibold rounded-xl border transition bg-white text-coffee-800 border-coffee-200 hover:bg-coffee-100";
-            }
         }
 
         function addToCart(productId) {
@@ -380,10 +343,9 @@
             
             if (cart.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center text-coffee-600/60 py-12 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-mug-saucer text-4xl mb-3 text-coffee-200"></i>
-                        <p class="text-sm font-medium">Koszyk jest pusty</p>
-                        <p class="text-xs mt-1">Wybierz produkty z menu po lewej stronie</p>
+                    <div class="text-center text-coffee-600/60 py-6 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-mug-saucer text-xl mb-1 text-coffee-200"></i>
+                        <p class="font-medium text-[10px]">Koszyk jest pusty</p>
                     </div>
                 `;
                 document.getElementById('cart-total').innerText = '0.00 zł';
@@ -391,17 +353,17 @@
             }
 
             container.innerHTML = cart.map(item => `
-                <div class="flex items-center justify-between p-2.5 bg-coffee-50/70 rounded-xl border border-coffee-100">
-                    <div class="flex-1 pr-2">
-                        <p class="text-xs font-bold text-coffee-900 leading-snug">${item.name}</p>
-                        <p class="text-[11px] text-coffee-600 font-medium">${item.price.toFixed(2)} zł / szt.</p>
+                <div class="flex items-center justify-between p-1 bg-coffee-50/70 rounded border border-coffee-100">
+                    <div class="flex-1 pr-1">
+                        <p class="font-bold text-coffee-900 leading-snug text-[10px]">${item.name}</p>
+                        <p class="text-[8px] text-coffee-600 font-medium">${item.price.toFixed(2)} zł</p>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <button onclick="updateQty(${item.id}, -1)" class="w-7 h-7 bg-white border border-coffee-200 rounded-lg flex items-center justify-center text-coffee-800 hover:bg-coffee-100 shadow-xs font-bold text-xs">-</button>
-                        <span class="text-xs font-bold w-5 text-center">${item.qty}</span>
-                        <button onclick="updateQty(${item.id}, 1)" class="w-7 h-7 bg-white border border-coffee-200 rounded-lg flex items-center justify-center text-coffee-800 hover:bg-coffee-100 shadow-xs font-bold text-xs">+</button>
+                    <div class="flex items-center space-x-1">
+                        <button onclick="updateQty(${item.id}, -1)" class="w-4 h-4 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[9px]">-</button>
+                        <span class="font-bold w-3 text-center text-[9px]">${item.qty}</span>
+                        <button onclick="updateQty(${item.id}, 1)" class="w-4 h-4 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[9px]">+</button>
                     </div>
-                    <div class="w-16 text-right font-bold text-xs text-coffee-900">
+                    <div class="w-10 text-right font-bold text-[9px] text-coffee-900">
                         ${(item.price * item.qty).toFixed(2)} zł
                     </div>
                 </div>
@@ -411,9 +373,19 @@
             document.getElementById('cart-total').innerText = total.toFixed(2) + ' zł';
         }
 
+        function getNextOrderNumber() {
+            let lastNumber = parseInt(localStorage.getItem('aroma_pos_last_num')) || 0;
+            let nextNum = lastNumber + 1;
+            if (nextNum > 20) {
+                nextNum = 1;
+            }
+            localStorage.setItem('aroma_pos_last_num', nextNum);
+            return nextNum;
+        }
+
         function checkout(paymentMethod) {
             if (cart.length === 0) {
-                alert('Koszyk jest pusty. Dodaj produkty przed finalizacją.');
+                alert('Koszyk jest pusty.');
                 return;
             }
 
@@ -421,13 +393,12 @@
             const now = new Date();
             const timeStr = now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'});
             const dateStr = now.toISOString().split('T')[0];
-            const orderId = 'ZAM-' + String(orderHistory.length + 1).padStart(3, '0');
+            const orderNum = getNextOrderNumber();
 
             const newOrder = {
-                id: orderId,
+                id: orderNum,
                 time: timeStr,
                 date: dateStr,
-                type: orderType === 'lokal' ? 'Na miejscu' : 'Na wynos',
                 items: [...cart],
                 payment: paymentMethod,
                 total: total
@@ -439,8 +410,6 @@
             cart = [];
             renderCart();
             renderHistory();
-            
-            // Przełącz automatycznie na zakładkę historii, aby pokazać nowe zamówienie
             switchTab('history');
         }
 
@@ -451,7 +420,7 @@
             let filtered = orderHistory;
             if (query.trim() !== '') {
                 filtered = orderHistory.filter(ord => 
-                    ord.id.toLowerCase().includes(query) || 
+                    String(ord.id).toLowerCase().includes(query) || 
                     ord.items.some(i => i.name.toLowerCase().includes(query))
                 );
             }
@@ -459,8 +428,8 @@
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="p-8 text-center text-coffee-600/60">
-                            Brak zamówień spełniających kryteria.
+                        <td colspan="6" class="p-3 text-center text-coffee-600/60">
+                            Brak zamówień.
                         </td>
                     </tr>
                 `;
@@ -469,18 +438,18 @@
 
             tbody.innerHTML = filtered.map(ord => `
                 <tr class="hover:bg-coffee-50/50 transition">
-                    <td class="p-4 font-bold text-coffee-900">${ord.id}</td>
-                    <td class="p-4 text-coffee-700">${ord.date} ${ord.time}</td>
-                    <td class="p-4">
-                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${ord.type === 'Na miejscu' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800'}">
-                            ${ord.type}
-                        </span>
-                    </td>
-                    <td class="p-4 text-coffee-800 text-xs">
+                    <td class="p-1.5 font-bold text-coffee-900">${ord.id}</td>
+                    <td class="p-1.5 text-coffee-700">${ord.date} ${ord.time}</td>
+                    <td class="p-1.5 text-coffee-800 text-[9px]">
                         ${ord.items.map(i => `${i.qty}x ${i.name}`).join(', ')}
                     </td>
-                    <td class="p-4 text-coffee-700">${ord.payment}</td>
-                    <td class="p-4 text-right font-bold text-coffee-900">${ord.total.toFixed(2)} zł</td>
+                    <td class="p-1.5 text-coffee-700">${ord.payment}</td>
+                    <td class="p-1.5 text-right font-bold text-coffee-900">${ord.total.toFixed(2)} zł</td>
+                    <td class="p-1.5 text-center">
+                        <button onclick="deleteOrder(${ord.id}, '${ord.time}')" class="p-1 bg-red-50 hover:bg-red-100 text-red-600 rounded transition" title="Usuń zamówienie">
+                            <i class="fa-solid fa-trash-can text-[9px]"></i>
+                        </button>
+                    </td>
                 </tr>
             `).join('');
         }
@@ -489,26 +458,35 @@
             renderHistory();
         }
 
+        function deleteOrder(orderId, orderTime) {
+            if (confirm(`Usunąć zamówienie nr ${orderId}?`)) {
+                orderHistory = orderHistory.filter(ord => !(ord.id === orderId && ord.time === orderTime));
+                localStorage.setItem('aroma_pos_history', JSON.stringify(orderHistory));
+                renderHistory();
+            }
+        }
+
         function clearHistory() {
-            if (confirm('Czy na pewno chcesz wyczyścić całą historię zamówień?')) {
+            if (confirm('Wyczyścić całą historię?')) {
                 orderHistory = [];
                 localStorage.removeItem('aroma_pos_history');
+                localStorage.removeItem('aroma_pos_last_num');
                 renderHistory();
             }
         }
 
         function exportToCSV() {
             if (orderHistory.length === 0) {
-                alert('Brak danych do eksportu.');
+                alert('Brak danych.');
                 return;
             }
 
             let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-            csvContent += "ID Zamówienia;Data;Godzina;Typ;Płatność;Wartość (PLN);Pozycje\n";
+            csvContent += "Nr Zamówienia;Data;Godzina;Płatność;Wartość (PLN);Pozycje\n";
 
             orderHistory.forEach(ord => {
                 const itemsStr = ord.items.map(i => `${i.qty}x ${i.name}`).join(' | ');
-                const row = [ord.id, ord.date, ord.time, ord.type, ord.payment, ord.total.toFixed(2), `"${itemsStr}"`];
+                const row = [ord.id, ord.date, ord.time, ord.payment, ord.total.toFixed(2), `"${itemsStr}"`];
                 csvContent += row.join(";") + "\n";
             });
 
