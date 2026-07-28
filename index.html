@@ -94,7 +94,8 @@
                 </div>
 
                 <div class="flex-1 overflow-y-auto pr-0.5">
-                    <div id="product-grid" class="grid grid-cols-5 gap-1.5 pb-1"></div>
+                    <!-- Zmieniono siatkę na 7 kolumn oraz mniejsze odstępy, aby kafelki były mniejsze -->
+                    <div id="product-grid" class="grid grid-cols-7 gap-1 pb-1"></div>
                 </div>
             </div>
 
@@ -274,7 +275,7 @@
             const grid = document.getElementById('product-grid');
             if (products.length === 0) {
                 grid.innerHTML = `
-                    <div class="col-span-5 text-center py-6 text-coffee-600/60 text-[10px]">
+                    <div class="col-span-7 text-center py-6 text-coffee-600/60 text-[10px]">
                         <i class="fa-solid fa-box-open text-lg mb-1"></i>
                         <p>Brak produktów</p>
                     </div>
@@ -282,15 +283,16 @@
                 return;
             }
 
+            // Zmniejszona wysokość kafelków (h-12) oraz mniejsze czcionki dla kompaktowego wyglądu
             grid.innerHTML = products.map(prod => `
                 <button onclick="addToCart(${prod.id})" 
-                    class="bg-white p-1.5 rounded-lg border border-coffee-200 shadow-sm hover:shadow hover:border-coffee-600 transition flex flex-col justify-between text-left h-16 group">
-                    <div class="flex justify-between items-start w-full">
-                        <span class="text-xs p-0.5 bg-coffee-50 rounded group-hover:scale-105 transition">${prod.image}</span>
-                        <span class="text-[8px] font-bold px-1 bg-coffee-100 text-coffee-900 rounded">${prod.price.toFixed(2)} zł</span>
+                    class="bg-white p-1 rounded-md border border-coffee-200 shadow-sm hover:shadow hover:border-coffee-600 transition flex flex-col justify-between text-left h-12 group">
+                    <div class="flex justify-between items-center w-full">
+                        <span class="text-[10px] leading-none">${prod.image}</span>
+                        <span class="text-[7px] font-bold px-1 bg-coffee-100 text-coffee-900 rounded">${prod.price.toFixed(2)} zł</span>
                     </div>
                     <div>
-                        <h3 class="font-bold text-coffee-900 text-[9px] leading-tight line-clamp-2">${prod.name}</h3>
+                        <h3 class="font-bold text-coffee-900 text-[8px] leading-tight line-clamp-1">${prod.name}</h3>
                     </div>
                 </button>
             `).join('');
