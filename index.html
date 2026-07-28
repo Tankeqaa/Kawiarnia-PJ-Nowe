@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kawiarnia POS - System Zamówień</title>
+    <title>Kawiarnia "Aroma POS"</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -50,27 +50,27 @@
                 <i class="fa-solid fa-mug-hot text-xs"></i>
             </div>
             <div>
-                <h1 class="text-[11px] font-bold tracking-wide">Aroma POS</h1>
+                <h1 class="text-[11px] font-bold tracking-wide">Kawiarnia "Aroma POS"</h1>
                 <p class="text-[8px] text-amber-200/80 flex items-center gap-1">
                     <span id="current-time"></span> | 
-                    <span class="bg-emerald-600 text-white px-1 rounded text-[7px] font-semibold">Online</span>
+                    <span class="bg-emerald-600 text-white px-1 rounded text-[7px] font-semibold">Stan: Online</span>
                 </p>
             </div>
         </div>
 
         <div class="flex bg-coffee-800 p-0.5 rounded-lg space-x-1">
             <button onclick="switchTab('pos')" id="tab-btn-pos" class="px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]">
-                <i class="fa-solid fa-cash-register mr-1"></i> Kasa
+                <i class="fa-solid fa-cash-register mr-1"></i> Kasa / Menu
             </button>
             <button onclick="switchTab('history')" id="tab-btn-history" class="px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]">
-                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Historia
+                <i class="fa-solid fa-clock-rotate-left mr-1"></i> Historia Zamówień
             </button>
         </div>
 
         <div class="flex items-center space-x-2">
             <div class="text-right">
                 <p class="font-medium text-[10px]">Barista: Jan</p>
-                <p class="text-[8px] text-amber-200/70">Terminal #1</p>
+                <p class="text-[8px] text-amber-200/70">Terminal #1 (iPad)</p>
             </div>
             <button onclick="openDaySummaryModal()" class="bg-coffee-700 hover:bg-coffee-600 text-amber-100 p-1.5 rounded transition" title="Podsumowanie dnia">
                 <i class="fa-solid fa-chart-line text-[11px]"></i>
@@ -138,17 +138,17 @@
                     </h2>
                     <div class="relative">
                         <i class="fa-solid fa-filter absolute left-2 top-1.5 text-coffee-600 text-[9px]"></i>
-                        <input type="text" id="history-search" oninput="filterHistory()" placeholder="Szukaj numeru..." 
-                            class="pl-6 pr-2 py-0.5 bg-coffee-50 border border-coffee-200 rounded focus:outline-none focus:border-coffee-600 w-32 text-[10px]">
+                        <input type="text" id="history-search" oninput="filterHistory()" placeholder="Szukaj po ID lub pozycji..." 
+                            class="pl-6 pr-2 py-0.5 bg-coffee-50 border border-coffee-200 rounded focus:outline-none focus:border-coffee-600 w-44 text-[10px]">
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-1">
                     <button onclick="exportToCSV()" class="px-2 py-0.5 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded transition flex items-center text-[10px] shadow-sm">
-                        <i class="fa-solid fa-file-excel mr-1"></i> Excel
+                        <i class="fa-solid fa-file-excel mr-1"></i> Eksport CSV
                     </button>
                     <button onclick="clearHistory()" class="px-2 py-0.5 bg-red-100 hover:bg-red-200 text-red-700 font-medium rounded transition flex items-center text-[10px]">
-                        <i class="fa-solid fa-trash mr-1"></i> Wyczyść
+                        <i class="fa-solid fa-trash mr-1"></i> Wyczyść historię
                     </button>
                 </div>
             </div>
@@ -158,8 +158,9 @@
                     <table class="w-full text-left border-collapse">
                         <thead class="bg-coffee-50 text-coffee-900 uppercase font-semibold sticky top-0 border-b border-coffee-200 text-[9px]">
                             <tr>
-                                <th class="p-1.5">Nr</th>
+                                <th class="p-1.5">ID Zamówienia</th>
                                 <th class="p-1.5">Godzina</th>
+                                <th class="p-1.5">Typ</th>
                                 <th class="p-1.5">Pozycje</th>
                                 <th class="p-1.5">Płatność</th>
                                 <th class="p-1.5 text-right">Wartość</th>
@@ -229,7 +230,7 @@
 
         function updateClock() {
             const now = new Date();
-            document.getElementById('current-time').innerText = now.toLocaleDateString('pl-PL') + ' ' + now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'});
+            document.getElementById('current-time').innerText = now.toLocaleDateString('pl-PL') + ' ' + now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit', second:'2-digit'});
         }
 
         function switchTab(tab) {
@@ -380,7 +381,7 @@
                 nextNum = 1;
             }
             localStorage.setItem('aroma_pos_last_num', nextNum);
-            return nextNum;
+            return 'ZAM-' + String(nextNum).padStart(3, '0');
         }
 
         function checkout(paymentMethod) {
@@ -391,7 +392,7 @@
 
             const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit'});
+            const timeStr = now.toLocaleTimeString('pl-PL', {hour: '2-digit', minute:'2-digit', second:'2-digit'});
             const dateStr = now.toISOString().split('T')[0];
             const orderNum = getNextOrderNumber();
 
@@ -428,7 +429,7 @@
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="p-3 text-center text-coffee-600/60">
+                        <td colspan="7" class="p-3 text-center text-coffee-600/60">
                             Brak zamówień.
                         </td>
                     </tr>
@@ -440,13 +441,14 @@
                 <tr class="hover:bg-coffee-50/50 transition">
                     <td class="p-1.5 font-bold text-coffee-900">${ord.id}</td>
                     <td class="p-1.5 text-coffee-700">${ord.date} ${ord.time}</td>
+                    <td class="p-1.5"><span class="px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded text-[9px] font-semibold">Na miejscu</span></td>
                     <td class="p-1.5 text-coffee-800 text-[9px]">
                         ${ord.items.map(i => `${i.qty}x ${i.name}`).join(', ')}
                     </td>
                     <td class="p-1.5 text-coffee-700">${ord.payment}</td>
                     <td class="p-1.5 text-right font-bold text-coffee-900">${ord.total.toFixed(2)} zł</td>
                     <td class="p-1.5 text-center">
-                        <button onclick="deleteOrder(${ord.id}, '${ord.time}')" class="p-1 bg-red-50 hover:bg-red-100 text-red-600 rounded transition" title="Usuń zamówienie">
+                        <button onclick="deleteOrder('${ord.id}', '${ord.time}')" class="p-1 bg-red-50 hover:bg-red-100 text-red-600 rounded transition" title="Usuń zamówienie">
                             <i class="fa-solid fa-trash-can text-[9px]"></i>
                         </button>
                     </td>
@@ -459,7 +461,7 @@
         }
 
         function deleteOrder(orderId, orderTime) {
-            if (confirm(`Usunąć zamówienie nr ${orderId}?`)) {
+            if (confirm(`Usunąć zamówienie ${orderId}?`)) {
                 orderHistory = orderHistory.filter(ord => !(ord.id === orderId && ord.time === orderTime));
                 localStorage.setItem('aroma_pos_history', JSON.stringify(orderHistory));
                 renderHistory();
@@ -482,7 +484,7 @@
             }
 
             let csvContent = "data:text/csv;charset=utf-8,\uFEFF";
-            csvContent += "Nr Zamówienia;Data;Godzina;Płatność;Wartość (PLN);Pozycje\n";
+            csvContent += "ID Zamówienia;Data;Godzina;Płatność;Wartość (PLN);Pozycje\n";
 
             orderHistory.forEach(ord => {
                 const itemsStr = ord.items.map(i => `${i.qty}x ${i.name}`).join(' | ');
