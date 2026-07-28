@@ -44,36 +44,36 @@
 </head>
 <body class="h-screen w-screen overflow-hidden flex flex-col text-xs">
 
-    <header class="bg-coffee-900 text-white h-11 flex items-center justify-between px-3 shadow-md z-10 shrink-0">
+    <header class="bg-coffee-900 text-white h-12 flex items-center justify-between px-3 shadow-md z-10 shrink-0">
         <div class="flex items-center space-x-2">
-            <div class="bg-coffee-700 p-1 rounded text-amber-200">
-                <i class="fa-solid fa-mug-hot text-xs"></i>
+            <div class="bg-coffee-700 p-1 rounded-md text-amber-200">
+                <i class="fa-solid fa-mug-hot text-sm"></i>
             </div>
             <div>
-                <h1 class="text-[11px] font-bold tracking-wide">Aroma POS</h1>
-                <p class="text-[8px] text-amber-200/80 flex items-center gap-1">
+                <h1 class="text-xs font-bold tracking-wide">Aroma POS</h1>
+                <p class="text-[9px] text-amber-200/80 flex items-center gap-1.5">
                     <span id="current-time"></span> | 
-                    <span class="bg-emerald-600 text-white px-1 rounded text-[7px] font-semibold">Online</span>
+                    <span class="bg-emerald-600 text-white px-1 rounded text-[8px] font-semibold">Online</span>
                 </p>
             </div>
         </div>
 
         <div class="flex bg-coffee-800 p-0.5 rounded-lg space-x-1">
-            <button onclick="switchTab('pos')" id="tab-btn-pos" class="px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]">
+            <button onclick="switchTab('pos')" id="tab-btn-pos" class="px-3 py-1 rounded-md font-medium transition-all bg-coffee-600 text-white shadow text-[11px]">
                 <i class="fa-solid fa-cash-register mr-1"></i> Kasa
             </button>
-            <button onclick="switchTab('history')" id="tab-btn-history" class="px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]">
+            <button onclick="switchTab('history')" id="tab-btn-history" class="px-3 py-1 rounded-md font-medium transition-all text-coffee-200 hover:text-white text-[11px]">
                 <i class="fa-solid fa-clock-rotate-left mr-1"></i> Historia
             </button>
         </div>
 
         <div class="flex items-center space-x-2">
             <div class="text-right">
-                <p class="font-medium text-[10px]">Barista: Jan</p>
-                <p class="text-[8px] text-amber-200/70">Terminal #1</p>
+                <p class="font-medium text-[11px]">Barista: Jan</p>
+                <p class="text-[9px] text-amber-200/70">Terminal #1</p>
             </div>
-            <button onclick="openDaySummaryModal()" class="bg-coffee-700 hover:bg-coffee-600 text-amber-100 p-1.5 rounded transition" title="Podsumowanie dnia">
-                <i class="fa-solid fa-chart-line text-[11px]"></i>
+            <button onclick="openDaySummaryModal()" class="bg-coffee-700 hover:bg-coffee-600 text-amber-100 p-1.5 rounded-md transition" title="Podsumowanie dnia">
+                <i class="fa-solid fa-chart-line text-xs"></i>
             </button>
         </div>
     </header>
@@ -83,71 +83,72 @@
         <div id="view-pos" class="flex-1 flex overflow-hidden">
             
             <div class="flex-1 flex flex-col p-2 overflow-hidden border-r border-coffee-200">
-                <div class="mb-1.5 space-y-1 shrink-0">
+                <div class="mb-2 space-y-1.5 shrink-0">
                     <div class="relative">
-                        <i class="fa-solid fa-search absolute left-3 top-2 text-coffee-600 text-[10px]"></i>
+                        <i class="fa-solid fa-search absolute left-3 top-2.5 text-coffee-600 text-[11px]"></i>
                         <input type="text" id="search-input" oninput="filterMenu()" placeholder="Szukaj produktu..." 
-                            class="w-full pl-8 pr-3 py-1 bg-white border border-coffee-200 rounded-lg focus:outline-none focus:border-coffee-600 shadow-sm text-[11px]">
+                            class="w-full pl-9 pr-3 py-1.5 bg-white border border-coffee-200 rounded-lg focus:outline-none focus:border-coffee-600 shadow-sm text-[11px]">
                     </div>
 
                     <div id="category-container" class="flex space-x-1 overflow-x-auto no-scrollbar pb-0.5"></div>
                 </div>
 
                 <div class="flex-1 overflow-y-auto pr-0.5">
-                    <div id="product-grid" class="grid grid-cols-5 gap-1.5 pb-1"></div>
+                    <div id="product-grid" class="grid grid-cols-4 gap-2 pb-1"></div>
                 </div>
             </div>
 
-            <div class="w-[300px] bg-white flex flex-col h-full shadow-lg shrink-0">
-                <div class="p-2 border-b border-coffee-100 flex justify-between items-center bg-coffee-50 shrink-0">
-                    <h2 class="font-bold text-coffee-900 flex items-center text-[10px]">
+            <div class="w-[310px] bg-white flex flex-col h-full shadow-lg shrink-0">
+                <div class="p-2.5 border-b border-coffee-100 flex justify-between items-center bg-coffee-50 shrink-0">
+                    <h2 class="font-bold text-coffee-900 flex items-center text-[11px]">
                         <i class="fa-solid fa-receipt mr-1 text-coffee-600"></i> Bieżące Zamówienie
                     </h2>
-                    <button onclick="clearCart()" class="text-[9px] text-red-600 hover:text-red-800 font-medium px-1.5 py-0.5 bg-red-50 rounded transition">
-                        <i class="fa-solid fa-trash-can mr-0.5"></i> Wyczyść
+                    <button onclick="clearCart()" class="text-[10px] text-red-600 hover:text-red-800 font-medium px-1.5 py-0.5 bg-red-50 rounded transition">
+                        <i class="fa-solid fa-trash-can mr-1"></i> Wyczyść
                     </button>
                 </div>
 
-                <div id="cart-items" class="flex-1 overflow-y-auto p-1.5 space-y-1">
-                    <div class="text-center text-coffee-600/60 py-6 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-mug-saucer text-xl mb-1 text-coffee-200"></i>
-                        <p class="font-medium text-[10px]">Koszyk jest pusty</p>
+                <div id="cart-items" class="flex-1 overflow-y-auto p-2 space-y-1.5">
+                    <div class="text-center text-coffee-600/60 py-8 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-mug-saucer text-2xl mb-1.5 text-coffee-200"></i>
+                        <p class="font-medium text-[11px]">Koszyk jest pusty</p>
+                        <p class="text-[9px] mt-0.5">Wybierz produkty z menu</p>
                     </div>
                 </div>
 
-                <div class="p-2 border-t border-coffee-100 bg-coffee-50 space-y-1.5 shrink-0">
+                <div class="p-2.5 border-t border-coffee-100 bg-coffee-50 space-y-2 shrink-0">
                     <div class="flex justify-between font-bold text-xs text-coffee-900 pt-0.5">
                         <span>Do zapłaty:</span>
                         <span id="cart-total" class="text-coffee-700 text-sm">0.00 zł</span>
                     </div>
 
                     <div>
-                        <button onclick="checkout('Gotówka')" class="w-full py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition shadow flex items-center justify-center text-[10px]">
-                            <i class="fa-solid fa-money-bill-wave mr-1 text-xs"></i> Zamów i Opłać (Gotówka)
+                        <button onclick="checkout('Gotówka')" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg transition shadow flex items-center justify-center text-[11px]">
+                            <i class="fa-solid fa-money-bill-wave mr-1.5 text-xs"></i> Zamów i Opłać (Gotówka)
                         </button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="view-history" class="flex-1 flex flex-col p-2.5 overflow-hidden hidden bg-[#f5efe6]">
-            <div class="flex justify-between items-center mb-2 bg-white p-2 rounded-lg shadow-sm border border-coffee-200 shrink-0">
+        <div id="view-history" class="flex-1 flex flex-col p-3 overflow-hidden hidden bg-[#f5efe6]">
+            <div class="flex justify-between items-center mb-3 bg-white p-2.5 rounded-lg shadow-sm border border-coffee-200 shrink-0">
                 <div class="flex items-center space-x-2">
                     <h2 class="font-bold text-coffee-900 flex items-center text-xs">
-                        <i class="fa-solid fa-list-check mr-1 text-coffee-600"></i> Historia Zamówień
+                        <i class="fa-solid fa-list-check mr-1.5 text-coffee-600"></i> Historia Zamówień
                     </h2>
                     <div class="relative">
-                        <i class="fa-solid fa-filter absolute left-2 top-1.5 text-coffee-600 text-[9px]"></i>
+                        <i class="fa-solid fa-filter absolute left-2.5 top-2 text-coffee-600 text-[9px]"></i>
                         <input type="text" id="history-search" oninput="filterHistory()" placeholder="Szukaj numeru..." 
-                            class="pl-6 pr-2 py-0.5 bg-coffee-50 border border-coffee-200 rounded focus:outline-none focus:border-coffee-600 w-32 text-[10px]">
+                            class="pl-7 pr-2.5 py-1 bg-coffee-50 border border-coffee-200 rounded-md focus:outline-none focus:border-coffee-600 w-36 text-[11px]">
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-1">
-                    <button onclick="exportToCSV()" class="px-2 py-0.5 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded transition flex items-center text-[10px] shadow-sm">
+                <div class="flex items-center space-x-1.5">
+                    <button onclick="exportToCSV()" class="px-2.5 py-1 bg-emerald-700 hover:bg-emerald-800 text-white font-medium rounded-md transition flex items-center text-[11px] shadow-sm">
                         <i class="fa-solid fa-file-excel mr-1"></i> Excel
                     </button>
-                    <button onclick="clearHistory()" class="px-2 py-0.5 bg-red-100 hover:bg-red-200 text-red-700 font-medium rounded transition flex items-center text-[10px]">
+                    <button onclick="clearHistory()" class="px-2 py-1 bg-red-100 hover:bg-red-200 text-red-700 font-medium rounded-md transition flex items-center text-[11px]">
                         <i class="fa-solid fa-trash mr-1"></i> Wyczyść
                     </button>
                 </div>
@@ -158,15 +159,15 @@
                     <table class="w-full text-left border-collapse">
                         <thead class="bg-coffee-50 text-coffee-900 uppercase font-semibold sticky top-0 border-b border-coffee-200 text-[9px]">
                             <tr>
-                                <th class="p-1.5">Nr</th>
-                                <th class="p-1.5">Godzina</th>
-                                <th class="p-1.5">Pozycje</th>
-                                <th class="p-1.5">Płatność</th>
-                                <th class="p-1.5 text-right">Wartość</th>
-                                <th class="p-1.5 text-center">Akcja</th>
+                                <th class="p-2">Nr</th>
+                                <th class="p-2">Godzina</th>
+                                <th class="p-2">Pozycje</th>
+                                <th class="p-2">Płatność</th>
+                                <th class="p-2 text-right">Wartość</th>
+                                <th class="p-2 text-center">Akcja</th>
                             </tr>
                         </thead>
-                        <tbody id="history-table-body" class="divide-y divide-coffee-100 text-[10px]"></tbody>
+                        <tbody id="history-table-body" class="divide-y divide-coffee-100 text-[11px]"></tbody>
                     </table>
                 </div>
             </div>
@@ -241,13 +242,13 @@
             if (tab === 'pos') {
                 posView.classList.remove('hidden');
                 historyView.classList.add('hidden');
-                posBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]";
-                historyBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]";
+                posBtn.className = "px-3 py-1 rounded-md font-medium transition-all bg-coffee-600 text-white shadow text-[11px]";
+                historyBtn.className = "px-3 py-1 rounded-md font-medium transition-all text-coffee-200 hover:text-white text-[11px]";
             } else {
                 posView.classList.add('hidden');
                 historyView.classList.remove('hidden');
-                historyBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all bg-coffee-600 text-white shadow text-[10px]";
-                posBtn.className = "px-2.5 py-0.5 rounded font-medium transition-all text-coffee-200 hover:text-white text-[10px]";
+                historyBtn.className = "px-3 py-1 rounded-md font-medium transition-all bg-coffee-600 text-white shadow text-[11px]";
+                posBtn.className = "px-3 py-1 rounded-md font-medium transition-all text-coffee-200 hover:text-white text-[11px]";
                 renderHistory();
             }
         }
@@ -256,8 +257,8 @@
             const container = document.getElementById('category-container');
             container.innerHTML = categories.map(cat => `
                 <button onclick="selectCategory('${cat.id}')" 
-                    class="px-2 py-1 rounded font-semibold whitespace-nowrap transition flex items-center space-x-1 shrink-0 text-[10px] ${currentCategory === cat.id ? 'bg-coffee-700 text-white shadow-sm' : 'bg-white text-coffee-800 border border-coffee-200 hover:bg-coffee-100'}">
-                    <i class="fa-solid ${cat.icon} text-[8px]"></i>
+                    class="px-2.5 py-1 rounded-md font-semibold whitespace-nowrap transition flex items-center space-x-1 shrink-0 text-[11px] ${currentCategory === cat.id ? 'bg-coffee-700 text-white shadow-sm' : 'bg-white text-coffee-800 border border-coffee-200 hover:bg-coffee-100'}">
+                    <i class="fa-solid ${cat.icon} text-[9px]"></i>
                     <span>${cat.name}</span>
                 </button>
             `).join('');
@@ -273,8 +274,8 @@
             const grid = document.getElementById('product-grid');
             if (products.length === 0) {
                 grid.innerHTML = `
-                    <div class="col-span-5 text-center py-6 text-coffee-600/60 text-[10px]">
-                        <i class="fa-solid fa-box-open text-lg mb-1"></i>
+                    <div class="col-span-4 text-center py-8 text-coffee-600/60 text-[11px]">
+                        <i class="fa-solid fa-box-open text-xl mb-1"></i>
                         <p>Brak produktów</p>
                     </div>
                 `;
@@ -283,13 +284,13 @@
 
             grid.innerHTML = products.map(prod => `
                 <button onclick="addToCart(${prod.id})" 
-                    class="bg-white p-1.5 rounded-lg border border-coffee-200 shadow-sm hover:shadow hover:border-coffee-600 transition flex flex-col justify-between text-left h-16 group">
+                    class="bg-white p-2 rounded-lg border border-coffee-200 shadow-sm hover:shadow hover:border-coffee-600 transition flex flex-col justify-between text-left h-20 group">
                     <div class="flex justify-between items-start w-full">
-                        <span class="text-xs p-0.5 bg-coffee-50 rounded group-hover:scale-105 transition">${prod.image}</span>
-                        <span class="text-[8px] font-bold px-1 bg-coffee-100 text-coffee-900 rounded">${prod.price.toFixed(2)} zł</span>
+                        <span class="text-sm p-1 bg-coffee-50 rounded group-hover:scale-105 transition">${prod.image}</span>
+                        <span class="text-[9px] font-bold px-1 py-0.5 bg-coffee-100 text-coffee-900 rounded">${prod.price.toFixed(2)} zł</span>
                     </div>
                     <div>
-                        <h3 class="font-bold text-coffee-900 text-[9px] leading-tight line-clamp-2">${prod.name}</h3>
+                        <h3 class="font-bold text-coffee-900 text-[10px] leading-tight line-clamp-2">${prod.name}</h3>
                     </div>
                 </button>
             `).join('');
@@ -343,9 +344,10 @@
             
             if (cart.length === 0) {
                 container.innerHTML = `
-                    <div class="text-center text-coffee-600/60 py-6 flex flex-col items-center justify-center">
-                        <i class="fa-solid fa-mug-saucer text-xl mb-1 text-coffee-200"></i>
-                        <p class="font-medium text-[10px]">Koszyk jest pusty</p>
+                    <div class="text-center text-coffee-600/60 py-8 flex flex-col items-center justify-center">
+                        <i class="fa-solid fa-mug-saucer text-2xl mb-1.5 text-coffee-200"></i>
+                        <p class="font-medium text-[11px]">Koszyk jest pusty</p>
+                        <p class="text-[9px] mt-0.5">Wybierz produkty z menu</p>
                     </div>
                 `;
                 document.getElementById('cart-total').innerText = '0.00 zł';
@@ -353,17 +355,17 @@
             }
 
             container.innerHTML = cart.map(item => `
-                <div class="flex items-center justify-between p-1 bg-coffee-50/70 rounded border border-coffee-100">
+                <div class="flex items-center justify-between p-1.5 bg-coffee-50/70 rounded-md border border-coffee-100">
                     <div class="flex-1 pr-1">
                         <p class="font-bold text-coffee-900 leading-snug text-[10px]">${item.name}</p>
-                        <p class="text-[8px] text-coffee-600 font-medium">${item.price.toFixed(2)} zł</p>
+                        <p class="text-[9px] text-coffee-600 font-medium">${item.price.toFixed(2)} zł</p>
                     </div>
                     <div class="flex items-center space-x-1">
-                        <button onclick="updateQty(${item.id}, -1)" class="w-4 h-4 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[9px]">-</button>
-                        <span class="font-bold w-3 text-center text-[9px]">${item.qty}</span>
-                        <button onclick="updateQty(${item.id}, 1)" class="w-4 h-4 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[9px]">+</button>
+                        <button onclick="updateQty(${item.id}, -1)" class="w-5 h-5 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[10px]">-</button>
+                        <span class="font-bold w-4 text-center text-[10px]">${item.qty}</span>
+                        <button onclick="updateQty(${item.id}, 1)" class="w-5 h-5 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[10px]">+</button>
                     </div>
-                    <div class="w-10 text-right font-bold text-[9px] text-coffee-900">
+                    <div class="w-12 text-right font-bold text-[10px] text-coffee-900">
                         ${(item.price * item.qty).toFixed(2)} zł
                     </div>
                 </div>
@@ -385,7 +387,7 @@
 
         function checkout(paymentMethod) {
             if (cart.length === 0) {
-                alert('Koszyk jest pusty.');
+                alert('Koszyk jest pusty. Dodaj produkty przed finalizacją.');
                 return;
             }
 
@@ -428,7 +430,7 @@
             if (filtered.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="p-3 text-center text-coffee-600/60">
+                        <td colspan="6" class="p-4 text-center text-coffee-600/60">
                             Brak zamówień.
                         </td>
                     </tr>
@@ -438,16 +440,16 @@
 
             tbody.innerHTML = filtered.map(ord => `
                 <tr class="hover:bg-coffee-50/50 transition">
-                    <td class="p-1.5 font-bold text-coffee-900">${ord.id}</td>
-                    <td class="p-1.5 text-coffee-700">${ord.date} ${ord.time}</td>
-                    <td class="p-1.5 text-coffee-800 text-[9px]">
+                    <td class="p-2 font-bold text-coffee-900">${ord.id}</td>
+                    <td class="p-2 text-coffee-700">${ord.date} ${ord.time}</td>
+                    <td class="p-2 text-coffee-800 text-[10px]">
                         ${ord.items.map(i => `${i.qty}x ${i.name}`).join(', ')}
                     </td>
-                    <td class="p-1.5 text-coffee-700">${ord.payment}</td>
-                    <td class="p-1.5 text-right font-bold text-coffee-900">${ord.total.toFixed(2)} zł</td>
-                    <td class="p-1.5 text-center">
+                    <td class="p-2 text-coffee-700">${ord.payment}</td>
+                    <td class="p-2 text-right font-bold text-coffee-900">${ord.total.toFixed(2)} zł</td>
+                    <td class="p-2 text-center">
                         <button onclick="deleteOrder(${ord.id}, '${ord.time}')" class="p-1 bg-red-50 hover:bg-red-100 text-red-600 rounded transition" title="Usuń zamówienie">
-                            <i class="fa-solid fa-trash-can text-[9px]"></i>
+                            <i class="fa-solid fa-trash-can text-[10px]"></i>
                         </button>
                     </td>
                 </tr>
@@ -477,7 +479,7 @@
 
         function exportToCSV() {
             if (orderHistory.length === 0) {
-                alert('Brak danych.');
+                alert('Brak danych do eksportu.');
                 return;
             }
 
