@@ -85,16 +85,17 @@
             <div class="flex-1 flex flex-col p-2 overflow-hidden border-r border-coffee-200 min-h-0">
                 <div class="mb-1.5 space-y-1 shrink-0">
                     <div class="relative">
-                        <i class="fa-solid fa-search absolute left-3 top-2 text-coffee-600 text-[10px]"></i>
+                        <i class="fa-solid fa-search absolute left-3 top-2 text-coffee-600 text-[11px]"></i>
                         <input type="text" id="search-input" oninput="filterMenu()" placeholder="Szukaj produktu..." 
-                            class="w-full pl-8 pr-3 py-1 bg-white border border-coffee-200 rounded-lg focus:outline-none focus:border-coffee-600 shadow-sm text-[11px]">
+                            class="w-full pl-8 pr-3 py-1.5 bg-white border border-coffee-200 rounded-lg focus:outline-none focus:border-coffee-600 shadow-sm text-xs">
                     </div>
 
                     <div id="category-container" class="flex space-x-1 overflow-x-auto no-scrollbar pb-0.5"></div>
                 </div>
 
                 <div class="flex-1 overflow-y-auto pr-0.5 min-h-0">
-                    <div id="product-grid" class="grid grid-cols-4 gap-2 pb-1"></div>
+                    <!-- Siatka 3-kolumnowa z dużymi, czytelnymi kafelkami -->
+                    <div id="product-grid" class="grid grid-cols-3 gap-2 pb-1"></div>
                 </div>
             </div>
 
@@ -257,8 +258,8 @@
             const container = document.getElementById('category-container');
             container.innerHTML = categories.map(cat => `
                 <button onclick="selectCategory('${cat.id}')" 
-                    class="px-2.5 py-1 rounded font-semibold whitespace-nowrap transition flex items-center space-x-1 shrink-0 text-[10px] ${currentCategory === cat.id ? 'bg-coffee-700 text-white shadow-sm' : 'bg-white text-coffee-800 border border-coffee-200 hover:bg-coffee-100'}">
-                    <i class="fa-solid ${cat.icon} text-[9px]"></i>
+                    class="px-3 py-1.5 rounded font-semibold whitespace-nowrap transition flex items-center space-x-1.5 shrink-0 text-xs ${currentCategory === cat.id ? 'bg-coffee-700 text-white shadow-sm' : 'bg-white text-coffee-800 border border-coffee-200 hover:bg-coffee-100'}">
+                    <i class="fa-solid ${cat.icon} text-xs"></i>
                     <span>${cat.name}</span>
                 </button>
             `).join('');
@@ -274,24 +275,24 @@
             const grid = document.getElementById('product-grid');
             if (products.length === 0) {
                 grid.innerHTML = `
-                    <div class="col-span-4 text-center py-6 text-coffee-600/60 text-[10px]">
-                        <i class="fa-solid fa-box-open text-lg mb-1"></i>
+                    <div class="col-span-3 text-center py-10 text-coffee-600/60 text-xs">
+                        <i class="fa-solid fa-box-open text-2xl mb-1"></i>
                         <p>Brak produktów</p>
                     </div>
                 `;
                 return;
             }
 
-            // Wygodne, optymalne kafelki (4 kolumny, odpowiednia wysokość h-16) mieszczące się idealnie w oknie
+            // Duże kafelki (wysokość h-24) w siatce 3-kolumnowej
             grid.innerHTML = products.map(prod => `
                 <button onclick="addToCart(${prod.id})" 
-                    class="bg-white p-2 rounded-lg border border-coffee-200 shadow-sm hover:shadow hover:border-coffee-600 transition flex flex-col justify-between text-left h-16 group">
+                    class="bg-white p-3 rounded-xl border border-coffee-200 shadow-sm hover:shadow-md hover:border-coffee-600 transition flex flex-col justify-between text-left h-24 group">
                     <div class="flex justify-between items-start w-full">
-                        <span class="text-sm">${prod.image}</span>
-                        <span class="text-[9px] font-bold px-1.5 py-0.5 bg-coffee-100 text-coffee-900 rounded">${prod.price.toFixed(2)} zł</span>
+                        <span class="text-2xl">${prod.image}</span>
+                        <span class="text-xs font-bold px-2 py-0.5 bg-coffee-100 text-coffee-900 rounded-md">${prod.price.toFixed(2)} zł</span>
                     </div>
                     <div>
-                        <h3 class="font-bold text-coffee-900 text-[10px] leading-tight line-clamp-2">${prod.name}</h3>
+                        <h3 class="font-bold text-coffee-900 text-xs leading-tight line-clamp-2">${prod.name}</h3>
                     </div>
                 </button>
             `).join('');
@@ -355,17 +356,17 @@
             }
 
             container.innerHTML = cart.map(item => `
-                <div class="flex items-center justify-between p-1 bg-coffee-50/70 rounded border border-coffee-100">
+                <div class="flex items-center justify-between p-1.5 bg-coffee-50/70 rounded border border-coffee-100">
                     <div class="flex-1 pr-1">
-                        <p class="font-bold text-coffee-900 leading-snug text-[10px]">${item.name}</p>
-                        <p class="text-[8px] text-coffee-600 font-medium">${item.price.toFixed(2)} zł</p>
+                        <p class="font-bold text-coffee-900 leading-snug text-[11px]">${item.name}</p>
+                        <p class="text-[9px] text-coffee-600 font-medium">${item.price.toFixed(2)} zł</p>
                     </div>
                     <div class="flex items-center space-x-1">
-                        <button onclick="updateQty(${item.id}, -1)" class="w-4 h-4 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[9px]">-</button>
-                        <span class="font-bold w-3 text-center text-[9px]">${item.qty}</span>
-                        <button onclick="updateQty(${item.id}, 1)" class="w-4 h-4 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[9px]">+</button>
+                        <button onclick="updateQty(${item.id}, -1)" class="w-5 h-5 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[10px]">-</button>
+                        <span class="font-bold w-4 text-center text-[10px]">${item.qty}</span>
+                        <button onclick="updateQty(${item.id}, 1)" class="w-5 h-5 bg-white border border-coffee-200 rounded flex items-center justify-center text-coffee-800 hover:bg-coffee-100 font-bold text-[10px]">+</button>
                     </div>
-                    <div class="w-10 text-right font-bold text-[9px] text-coffee-900">
+                    <div class="w-12 text-right font-bold text-[10px] text-coffee-900">
                         ${(item.price * item.qty).toFixed(2)} zł
                     </div>
                 </div>
